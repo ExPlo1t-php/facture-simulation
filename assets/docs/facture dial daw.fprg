@@ -1,0 +1,372 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="2.11">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="Solicode"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2022-01-30 08:56:15 PM"/>
+        <attribute name="created" value="U29saWNvZGU7REEzTU9OOzIwMjItMDEtMjg7MTE6MjM6NDggQU07MjUwMQ=="/>
+        <attribute name="edited" value="U29saWNvZGU7REEzTU9OOzIwMjItMDEtMjg7MDE6Mzk6MzggUE07MTsyNjI5"/>
+        <attribute name="edited" value="eW91bmU7REVTS1RPUC1MMEtSNjgxOzIwMjItMDEtMzA7MDg6NTY6MTUgUE07MzsyOTcy"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="oldindex" type="Real" array="False" size=""/>
+            <declare name="newindex" type="Real" array="False" size=""/>
+            <declare name="currentindex" type="Real" array="False" size=""/>
+            <declare name="caliber" type="String" array="False" size=""/>
+            <declare name="redevance" type="Real" array="False" size=""/>
+            <declare name="redevancetx" type="Real" array="False" size=""/>
+            <declare name="montantht" type="Real" array="False" size=""/>
+            <declare name="montanttx" type="Real" array="False" size=""/>
+            <declare name="montanttotal" type="Real" array="False" size=""/>
+            <input variable="oldindex"/>
+            <input variable="newindex"/>
+            <input variable="caliber"/>
+            <assign variable="currentindex" expression="newindex - oldindex"/>
+            <if expression="caliber == &quot;5-10&quot;">
+                <then>
+                    <if expression="currentindex &lt;= 150">
+                        <then>
+                            <if expression="currentindex &lt;= 100">
+                                <then>
+                                    <comment text="facturation progressive&#13;&#10;"/>
+                                    <assign variable="montantht" expression="currentindex * 0.794"/>
+                                    <assign variable="montanttx" expression="montantht*0.14"/>
+                                    <assign variable="redevance" expression="22.65"/>
+                                    <assign variable="redevancetx" expression="22.65*0.14"/>
+                                    <assign variable="montanttotal" expression="montantht+redevance+montanttx+redevancetx"/>
+                                    <output expression="montantht" newline="True"/>
+                                    <output expression="montanttx" newline="True"/>
+                                    <output expression="redevance" newline="True"/>
+                                    <output expression="redevancetx" newline="True"/>
+                                    <output expression="montanttotal" newline="True"/>
+                                </then>
+                                <else>
+                                    <if expression="currentindex &gt; 100">
+                                        <then>
+                                            <assign variable="montantht" expression="100 * 0.794 + (currentindex - 100)* 0.883"/>
+                                            <assign variable="montanttx" expression="(100*0.794)*0.14 + ((currentindex-100)*0.883)*0.14"/>
+                                            <assign variable="redevance" expression="22.65"/>
+                                            <assign variable="redevancetx" expression="22.65*0.14"/>
+                                            <assign variable="montanttotal" expression="montantht+redevance+montanttx+redevancetx"/>
+                                            <output expression="montantht" newline="True"/>
+                                            <output expression="montanttx" newline="True"/>
+                                            <output expression="redevance" newline="True"/>
+                                            <output expression="redevancetx" newline="True"/>
+                                            <output expression="montanttotal" newline="True"/>
+                                        </then>
+                                        <else/>
+                                    </if>
+                                </else>
+                            </if>
+                        </then>
+                        <else>
+                            <comment text="facturation selective"/>
+                            <if expression="currentindex &gt; 150">
+                                <then>
+                                    <if expression="currentindex &lt;= 210">
+                                        <then>
+                                            <assign variable="montantht" expression="currentindex*0.9451"/>
+                                            <assign variable="montanttx" expression="montantht*0.14"/>
+                                            <assign variable="redevance" expression="22.65"/>
+                                            <assign variable="redevancetx" expression="22.65*0.14"/>
+                                            <assign variable="montanttotal" expression="montantht+redevance+montanttx+redevancetx"/>
+                                            <output expression="montantht" newline="True"/>
+                                            <output expression="montanttx" newline="True"/>
+                                            <output expression="redevance" newline="True"/>
+                                            <output expression="redevancetx" newline="True"/>
+                                            <output expression="montanttotal" newline="True"/>
+                                        </then>
+                                        <else>
+                                            <if expression="currentindex&lt;=310">
+                                                <then>
+                                                    <assign variable="montantht" expression="currentindex*1.0489"/>
+                                                    <assign variable="montanttx" expression="montantht*0.14"/>
+                                                    <assign variable="redevance" expression="22.65"/>
+                                                    <assign variable="redevancetx" expression="22.65*0.14"/>
+                                                    <assign variable="montanttotal" expression="montantht+redevance+montanttx+redevancetx"/>
+                                                    <output expression="montantht" newline="True"/>
+                                                    <output expression="montanttx" newline="True"/>
+                                                    <output expression="redevance" newline="True"/>
+                                                    <output expression="redevancetx" newline="True"/>
+                                                    <output expression="montanttotal" newline="True"/>
+                                                </then>
+                                                <else>
+                                                    <if expression="currentindex&lt;=510">
+                                                        <then>
+                                                            <assign variable="montantht" expression="currentindex*1.2915"/>
+                                                            <assign variable="montanttx" expression="montantht*0.14"/>
+                                                            <assign variable="redevance" expression="22.65"/>
+                                                            <assign variable="redevancetx" expression="22.65*0.14"/>
+                                                            <assign variable="montanttotal" expression="montantht+redevance+montanttx+redevancetx"/>
+                                                            <output expression="montantht" newline="True"/>
+                                                            <output expression="montanttx" newline="True"/>
+                                                            <output expression="redevance" newline="True"/>
+                                                            <output expression="redevancetx" newline="True"/>
+                                                            <output expression="montanttotal" newline="True"/>
+                                                        </then>
+                                                        <else>
+                                                            <if expression="currentindex&gt;=511">
+                                                                <then>
+                                                                    <assign variable="montantht" expression="currentindex*1.4975"/>
+                                                                    <assign variable="montanttx" expression="montantht*0.14"/>
+                                                                    <assign variable="redevance" expression="22.65"/>
+                                                                    <assign variable="redevancetx" expression="22.65*0.14"/>
+                                                                    <assign variable="montanttotal" expression="montantht+redevance+montanttx+redevancetx"/>
+                                                                    <output expression="montantht" newline="True"/>
+                                                                    <output expression="montanttx" newline="True"/>
+                                                                    <output expression="redevance" newline="True"/>
+                                                                    <output expression="redevancetx" newline="True"/>
+                                                                    <output expression="montanttotal" newline="True"/>
+                                                                </then>
+                                                                <else/>
+                                                            </if>
+                                                        </else>
+                                                    </if>
+                                                </else>
+                                            </if>
+                                        </else>
+                                    </if>
+                                </then>
+                                <else/>
+                            </if>
+                        </else>
+                    </if>
+                </then>
+                <else>
+                    <if expression="caliber==&quot;15-20&quot;">
+                        <then>
+                            <if expression="currentindex &lt;= 150">
+                                <then>
+                                    <if expression="currentindex &lt;= 100">
+                                        <then>
+                                            <comment text="facturation progressive&#13;&#10;"/>
+                                            <assign variable="montantht" expression="currentindex * 0.794"/>
+                                            <assign variable="montanttx" expression="montantht*0.14"/>
+                                            <assign variable="redevance" expression="37.05"/>
+                                            <assign variable="redevancetx" expression="37.05*0.14"/>
+                                            <assign variable="montanttotal" expression="montantht+redevance+montanttx+redevancetx"/>
+                                            <output expression="montantht" newline="True"/>
+                                            <output expression="montanttx" newline="True"/>
+                                            <output expression="redevance" newline="True"/>
+                                            <output expression="redevancetx" newline="True"/>
+                                            <output expression="montanttotal" newline="True"/>
+                                        </then>
+                                        <else>
+                                            <if expression="currentindex &gt; 100">
+                                                <then>
+                                                    <assign variable="montantht" expression="100 * 0.794 + (currentindex - 100)* 0.883"/>
+                                                    <assign variable="montanttx" expression="(100*0.794)*0.14 + ((currentindex-100)*0.883)*0.14"/>
+                                                    <assign variable="redevance" expression="37.05"/>
+                                                    <assign variable="redevancetx" expression="37.05*0.14"/>
+                                                    <assign variable="montanttotal" expression="montantht+redevance+montanttx+redevancetx"/>
+                                                    <output expression="montantht" newline="True"/>
+                                                    <output expression="montanttx" newline="True"/>
+                                                    <output expression="redevance" newline="True"/>
+                                                    <output expression="redevancetx" newline="True"/>
+                                                    <output expression="montanttotal" newline="True"/>
+                                                </then>
+                                                <else/>
+                                            </if>
+                                        </else>
+                                    </if>
+                                </then>
+                                <else>
+                                    <comment text="facturation selective"/>
+                                    <if expression="currentindex &gt; 150">
+                                        <then>
+                                            <if expression="currentindex &lt;= 210">
+                                                <then>
+                                                    <assign variable="montantht" expression="currentindex*0.9451"/>
+                                                    <assign variable="montanttx" expression="montantht*0.14"/>
+                                                    <assign variable="redevance" expression="37.05"/>
+                                                    <assign variable="redevancetx" expression="37.05*0.14"/>
+                                                    <assign variable="montanttotal" expression="montantht+redevance+montanttx+redevancetx"/>
+                                                    <output expression="montantht" newline="True"/>
+                                                    <output expression="montanttx" newline="True"/>
+                                                    <output expression="redevance" newline="True"/>
+                                                    <output expression="redevancetx" newline="True"/>
+                                                    <output expression="montanttotal" newline="True"/>
+                                                </then>
+                                                <else>
+                                                    <if expression="currentindex&lt;=310">
+                                                        <then>
+                                                            <assign variable="montantht" expression="currentindex*1.0489"/>
+                                                            <assign variable="montanttx" expression="montantht*0.14"/>
+                                                            <assign variable="redevance" expression="37.05"/>
+                                                            <assign variable="redevancetx" expression="37.05*0.14"/>
+                                                            <assign variable="montanttotal" expression="montantht+redevance+montanttx+redevancetx"/>
+                                                            <output expression="montantht" newline="True"/>
+                                                            <output expression="montanttx" newline="True"/>
+                                                            <output expression="redevance" newline="True"/>
+                                                            <output expression="redevancetx" newline="True"/>
+                                                            <output expression="montanttotal" newline="True"/>
+                                                        </then>
+                                                        <else>
+                                                            <if expression="currentindex&lt;=510">
+                                                                <then>
+                                                                    <assign variable="montantht" expression="currentindex*1.2915"/>
+                                                                    <assign variable="montanttx" expression="montantht*0.14"/>
+                                                                    <assign variable="redevance" expression="37.05"/>
+                                                                    <assign variable="redevancetx" expression="37.05*0.14"/>
+                                                                    <assign variable="montanttotal" expression="montantht+redevance+montanttx+redevancetx"/>
+                                                                    <output expression="montantht" newline="True"/>
+                                                                    <output expression="montanttx" newline="True"/>
+                                                                    <output expression="redevance" newline="True"/>
+                                                                    <output expression="redevancetx" newline="True"/>
+                                                                    <output expression="montanttotal" newline="True"/>
+                                                                </then>
+                                                                <else>
+                                                                    <if expression="currentindex&gt;=511">
+                                                                        <then>
+                                                                            <assign variable="montantht" expression="currentindex*1.4975"/>
+                                                                            <assign variable="montanttx" expression="montantht*0.14"/>
+                                                                            <assign variable="redevance" expression="37.05"/>
+                                                                            <assign variable="redevancetx" expression="37.05*0.14"/>
+                                                                            <assign variable="montanttotal" expression="montantht+redevance+montanttx+redevancetx"/>
+                                                                            <output expression="montantht" newline="True"/>
+                                                                            <output expression="montanttx" newline="True"/>
+                                                                            <output expression="redevance" newline="True"/>
+                                                                            <output expression="redevancetx" newline="True"/>
+                                                                            <output expression="montanttotal" newline="True"/>
+                                                                        </then>
+                                                                        <else/>
+                                                                    </if>
+                                                                </else>
+                                                            </if>
+                                                        </else>
+                                                    </if>
+                                                </else>
+                                            </if>
+                                        </then>
+                                        <else/>
+                                    </if>
+                                </else>
+                            </if>
+                        </then>
+                        <else>
+                            <if expression="caliber==&quot;20-30&quot;">
+                                <then>
+                                    <if expression="currentindex &lt;= 150">
+                                        <then>
+                                            <if expression="currentindex &lt;= 100">
+                                                <then>
+                                                    <comment text="facturation progressive&#13;&#10;"/>
+                                                    <assign variable="montantht" expression="currentindex * 0.794"/>
+                                                    <assign variable="montanttx" expression="montantht*0.14"/>
+                                                    <assign variable="redevance" expression="46.20"/>
+                                                    <assign variable="redevancetx" expression="46.20*0.14"/>
+                                                    <assign variable="montanttotal" expression="montantht+redevance+montanttx+redevancetx"/>
+                                                    <output expression="montantht" newline="True"/>
+                                                    <output expression="montanttx" newline="True"/>
+                                                    <output expression="redevance" newline="True"/>
+                                                    <output expression="redevancetx" newline="True"/>
+                                                    <output expression="montanttotal" newline="True"/>
+                                                </then>
+                                                <else>
+                                                    <if expression="currentindex &gt; 100">
+                                                        <then>
+                                                            <assign variable="montantht" expression="100 * 0.794 + (currentindex - 100)* 0.883"/>
+                                                            <assign variable="montanttx" expression="(100*0.794)*0.14 + ((currentindex-100)*0.883)*0.14"/>
+                                                            <assign variable="redevance" expression="46.20"/>
+                                                            <assign variable="redevancetx" expression="46.20*0.14"/>
+                                                            <assign variable="montanttotal" expression="montantht+redevance+montanttx+redevancetx"/>
+                                                            <output expression="montantht" newline="True"/>
+                                                            <output expression="montanttx" newline="True"/>
+                                                            <output expression="redevance" newline="True"/>
+                                                            <output expression="redevancetx" newline="True"/>
+                                                            <output expression="montanttotal" newline="True"/>
+                                                        </then>
+                                                        <else/>
+                                                    </if>
+                                                </else>
+                                            </if>
+                                        </then>
+                                        <else>
+                                            <comment text="facturation selective"/>
+                                            <if expression="currentindex &gt; 150">
+                                                <then>
+                                                    <if expression="currentindex &lt;= 210">
+                                                        <then>
+                                                            <assign variable="montantht" expression="currentindex*0.9451"/>
+                                                            <assign variable="montanttx" expression="montantht*0.14"/>
+                                                            <assign variable="redevance" expression="46.20"/>
+                                                            <assign variable="redevancetx" expression="46.20*0.14"/>
+                                                            <assign variable="montanttotal" expression="montantht+redevance+montanttx+redevancetx"/>
+                                                            <output expression="montantht" newline="True"/>
+                                                            <output expression="montanttx" newline="True"/>
+                                                            <output expression="redevance" newline="True"/>
+                                                            <output expression="redevancetx" newline="True"/>
+                                                            <output expression="montanttotal" newline="True"/>
+                                                        </then>
+                                                        <else>
+                                                            <if expression="currentindex&lt;=310">
+                                                                <then>
+                                                                    <assign variable="montantht" expression="currentindex*1.0489"/>
+                                                                    <assign variable="montanttx" expression="montantht*0.14"/>
+                                                                    <assign variable="redevance" expression="46.20"/>
+                                                                    <assign variable="redevancetx" expression="46.20*0.14"/>
+                                                                    <assign variable="montanttotal" expression="montantht+redevance+montanttx+redevancetx"/>
+                                                                    <output expression="montantht" newline="True"/>
+                                                                    <output expression="montanttx" newline="True"/>
+                                                                    <output expression="redevance" newline="True"/>
+                                                                    <output expression="redevancetx" newline="True"/>
+                                                                    <output expression="montanttotal" newline="True"/>
+                                                                </then>
+                                                                <else>
+                                                                    <if expression="currentindex&lt;=510">
+                                                                        <then>
+                                                                            <assign variable="montantht" expression="currentindex*1.2915"/>
+                                                                            <assign variable="montanttx" expression="montantht*0.14"/>
+                                                                            <assign variable="redevance" expression="46.20"/>
+                                                                            <assign variable="redevancetx" expression="46.20*0.14"/>
+                                                                            <assign variable="montanttotal" expression="montantht+redevance+montanttx+redevancetx"/>
+                                                                            <output expression="montantht" newline="True"/>
+                                                                            <output expression="montanttx" newline="True"/>
+                                                                            <output expression="redevance" newline="True"/>
+                                                                            <output expression="redevancetx" newline="True"/>
+                                                                            <output expression="montanttotal" newline="True"/>
+                                                                        </then>
+                                                                        <else>
+                                                                            <if expression="currentindex&gt;=511">
+                                                                                <then>
+                                                                                    <assign variable="montantht" expression="currentindex*1.4975"/>
+                                                                                    <assign variable="montanttx" expression="montantht*0.14"/>
+                                                                                    <assign variable="redevance" expression="46.20"/>
+                                                                                    <assign variable="redevancetx" expression="46.20*0.14"/>
+                                                                                    <assign variable="montanttotal" expression="montantht+redevance+montanttx+redevancetx"/>
+                                                                                    <output expression="montantht" newline="True"/>
+                                                                                    <output expression="montanttx" newline="True"/>
+                                                                                    <output expression="redevance" newline="True"/>
+                                                                                    <output expression="redevancetx" newline="True"/>
+                                                                                    <output expression="montanttotal" newline="True"/>
+                                                                                </then>
+                                                                                <else/>
+                                                                            </if>
+                                                                        </else>
+                                                                    </if>
+                                                                </else>
+                                                            </if>
+                                                        </else>
+                                                    </if>
+                                                </then>
+                                                <else/>
+                                            </if>
+                                        </else>
+                                    </if>
+                                </then>
+                                <else/>
+                            </if>
+                        </else>
+                    </if>
+                </else>
+            </if>
+        </body>
+    </function>
+    <function name="facturation" type="None" variable="">
+        <parameters/>
+        <body/>
+    </function>
+</flowgorithm>
