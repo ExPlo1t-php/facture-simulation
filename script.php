@@ -143,7 +143,7 @@
                 echo '<tr>';
                  echo '<td>'.$kwh.'</td>';
                  echo '<td>'.$P_U.'</td>';
-                echo '<td>'.number_format($montantht2, 2, ',', ' ').'</td>';
+                echo '<td>'.number_format($montantht, 2, ',', ' ').'</td>';
                  echo '<td class="pt-3">' .$tva * 100 .'</td>';
                  echo '<td>'.number_format($mttaxes, 2, ',', ' ').'</td>';
                  echo '</tr>';
