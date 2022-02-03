@@ -27,9 +27,9 @@
                     <input type="text" class="form-control" name="newindex" id="newindex" placeholder="s'il vous plait entrer la nouvelle index"> <br>
                     <select name="caliber" class="form-control" id="caliber">
                         <option value="choisir un calibre" disabled>choisir un calibre</option>
-                        <option value="5-10">5-10</option>
-                        <option value="15-20">15-20</option>
-                        <option value="3>0">>30</option>
+                        <option value="22.65">5-10</option>
+                        <option value="37.05">15-20</option>
+                        <option value="46.20">>30</option>
                     </select>
                     <button type="submit" class="d-flex justify-content-center btn btn-dark">calculer</button>
                 </form>
