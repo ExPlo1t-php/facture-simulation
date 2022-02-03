@@ -143,7 +143,7 @@
                 echo '<tr>';
                  echo '<td>'.$kwh.'</td>';
                  echo '<td>'.$P_U.'</td>';
-                echo '<td>'.number_format($montantht, 2, ',', ' ').'</td>';
+                echo '<td>'.number_format($montantht2, 2, ',', ' ').'</td>';
                  echo '<td class="pt-3">' .$tva * 100 .'</td>';
                  echo '<td>'.number_format($mttaxes, 2, ',', ' ').'</td>';
                  echo '</tr>';
@@ -157,17 +157,37 @@
             <?php
             if($tranche == 'TRANCHE2'){
 
-                echo '<td>'.($montantht2 * $tva)+ ($redevancetx) + ($montantht1 * $tva ).'</td>';
+                echo '<td>'. number_format($redevancetx, 2, ',', ' ').'</td>';
             }else{
-                echo '<td>'.$redevancetx .'</td>';
+                echo '<td>'.number_format($redevancetx, 2, ',', ' ') .'</td>';
             }
             ?>
         </tr>
-        <tr><td> </td><td> </td><td> </td><td> </td> <td> <?php echo number_format($txtot, 2, ',', ' ');?></td> </tr>
-        <!-- <tr><td> </td><td> </td><td> </td><td> </td> <td> </td> </tr> -->
+        <?php 
+            if($tranche == 'TRANCHE2'){
+                $txtot = ($montantht1 * $tva)+($montantht2 * $tva) + $redevancetx;
+                echo '<tr><td> </td><td> </td><td> </td><td> </td> <td>' .number_format($txtot, 2, ',', ' '). '</td> </tr>';
+            }else{
+                echo '<tr><td> </td><td> </td><td> </td><td> </td> <td>' .number_format($txtot, 2, ',', ' '). '</td> </tr>';
+
+            }
+        ?>
         <tr><td> </td><td> </td><td> </td><td> </td> <td> <?php echo $timbre;?></td> </tr>
-        <tr><td> </td> <td></td> <td><?php echo number_format($stot2, 2, ',', ' ');?></td> <td></td> <td> <?php echo number_format($stot1, 2, ',', ' ');?></td> </tr>
-        <tr><td> </td><td> </td><td><?php echo number_format($tot, 2, ',', ' ');?> </td><td> </td> <td> </td> </tr>
+        <?php 
+            if($tranche == 'TRANCHE2'){
+                $txtot = ($montantht1 * $tva)+($montantht2 * $tva) + $redevancetx;
+                $stot1 = $txtot + $timbre;
+                $stot2 = $redevance + $montantht2 + $montantht1;
+                $tot = $stot2 + $stot1;
+               echo '<tr><td> </td> <td></td> <td>' .number_format($stot2, 2, ',', ' ').'</td> <td></td> <td> '. number_format($stot1, 2, ',', ' ').'</td> </tr>';
+               echo '<tr><td> </td><td> </td><td>'.number_format($tot, 2, ',', ' ') .' </td><td> </td> <td> </td> </tr>';
+            }else{
+                echo '<tr><td> </td><td> </td><td> </td><td> </td> <td>' .number_format($txtot, 2, ',', ' '). '</td> </tr>';
+                echo '<tr><td> </td><td> </td><td>'.number_format($tot, 2, ',', ' ') .' </td><td> </td> <td> </td> </tr>';
+
+            }
+        ?>
+       
     </tr>
     </tbody>
 </table>
@@ -178,7 +198,30 @@
 
 
        <tr> <td>إستھلاك الكھرباء</td></tr><br>
-       <tr> <td class="text-secondary small pt-1">1الشطر</td></tr><br>
+       <?php
+       $trancheAr = '';
+       if($tranche == 'TRANCHE2'){
+           $trancheAr = '1الشطر';
+           echo '<tr> <td class="text-secondary small pt-1">'.$trancheAr.'</td></tr><br>';
+           $trancheAr = '2الشطر';
+          echo '<tr> <td class="text-secondary small pt-1">'.$trancheAr.'</td></tr><br>';
+
+       }else{
+           if($tranche == 'TRANCHE3'){
+            $trancheAr = '3الشطر';
+            echo '<tr> <td class="text-secondary small pt-1">'.$trancheAr.'</td></tr><br>';
+           }elseif($tranche == 'TRANCHE4'){
+            $trancheAr = '4الشطر';
+            echo '<tr> <td class="text-secondary small pt-1">'.$trancheAr.'</td></tr><br>';
+           }elseif($tranche == 'TRANCHE5'){
+            $trancheAr = '5الشطر';
+            echo '<tr> <td class="text-secondary small pt-1">'.$trancheAr.'</td></tr><br>';
+           }else{
+            $trancheAr = '6الشطر';
+            echo '<tr> <td class="text-secondary small pt-1">'.$trancheAr.'</td></tr><br>';
+           }
+        }
+       ?>
         <!-- <td class="text-secondary small pt-1">2الشطر</td> -->
         <tr> <td class="py-2">إثاوة ثابتة الكھرباء</td></tr><br>
         <tr> <td class="pb-1"> الرسوم المؤداة لفائدة الدولة </td></tr><br>
