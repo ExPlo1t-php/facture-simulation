@@ -77,9 +77,9 @@
             <table class="table table-bordered">
             <thead >
                 <tr class="">
-                    <th scope="col"><td>Ancien index:</td> <td><?php echo ' '.$oldindex;?></td></th>
-                    <th scope="col"><td>Nouvelle index:</td> <td><?php echo ' '.$newindex;?></td></th>
-                    <th scope="col"><td>Consommation:</td> <td><?php echo ' '.$kwh.' Kwh';?></td></th>
+                    <td>Ancien index: <?php echo ' '.$oldindex;?></td> 
+                   <td>Nouvelle index:<?php echo ' '.$newindex;?></td>
+                   <td>Consommation:<?php echo ' '.$kwh.' Kwh';?></td>
                 </tr>
             </thead>
         </table></div>
@@ -92,16 +92,17 @@
 
         <!-- col1 -->
         <div class="pt-5 mt-3">
-          CONSOMMATION ELECTRICITE<br>
-          <tr> <td class="text-secondary small "><?php echo $tranche;?></td></tr><br>
-          <?php if($tranche == 'TRANCHE2'){echo '<tr> <td class="text-secondary small ">'. $tranche1 .'</td></tr><br>';}?>
+            <h6>CONSOMMATION ELECTRICITE</h6>
+           <h6 class="text-secondary small pt-1 fst-italic "><?php echo $tranche1;?></h6>
+          <?php if($tranche == 'TRANCHE2')
+          {echo '<h6 class="text-secondary small pt-1 fst-italic ">'. $tranche .'</h6>';}?>
         <!-- <td class="text-secondary small pt-1">TRANCHE 2</td> -->
-        <tr> <td class="py-2 ">REDEVANCE FIXE ELECTRICITE</td></tr><br>
-        <tr>  <td class="pb-1">TAXES POUR LE COMPTE DE L’ETAT</td></tr><br>
-        <tr> <td class="text-secondary small pt-1">TOTAL TVA</td></tr><br>
-        <tr> <td class="text-secondary small pt-2 ">TIMBRE</td></tr><br>
-        <tr> <td class="pt-1">SOUS-TOTAL</td></tr><br>
-        <tr> <td>TOTAL ÉLECTRICITÉ</td></tr><br>
+        <h6 class="pt-3 mt-3">REDEVANCE FIXE ELECTRICITE</h6>
+        <h6 class="pb-1">TAXES POUR LE COMPTE DE L’ETAT</h6>
+        <h6 class="text-secondary small pt-3 fst-italic">TOTAL TVA</h6>
+        <h6 class="text-secondary small pt-3 fst-italic ">TIMBRE</h6>
+        <h6 class="pt-1">SOUS-TOTAL</h6><br><br>
+        <h6>TOTAL ÉLECTRICITÉ</h6>
     </div></div><br>
 
     <!-- col2 -->
@@ -117,17 +118,17 @@
                 <th>مبلغ الرسوم<br>Montant Taxes</th>
           </tr>
         </thead>
-         <tbody class="border-white">
+         <tbody class="border-white pt-5">
              <?php
              if($tranche == 'TRANCHE2'){
                  //progressive
                  //tranche 1
-                echo '<tr>';
-                echo '<td>'. 100 .'</td>';
-                echo '<td>'. $P_U1.'</td>';
-               echo '<td>'.number_format($montantht1 , 2, ',', ' ').'</td>';
-                echo '<td class="pt-3">' .$tva * 100 .'%</td>';
-                echo '<td>'.number_format($montantht1 * $tva , 2, ',', ' ').'</td>';
+                echo "<tr>";
+                echo "<td class='pt-4'> 100 </td>";
+                echo "<td class='pt-4'>". $P_U1.'</td>';
+                echo "<td class='pt-4'>".number_format($montantht1 , 2, ',', ' ').'</td>';
+                echo "<td class='pt-4'>" .$tva * 100 .'%</td>';
+                echo "<td class='pt-4'>".number_format($montantht1 * $tva , 2, ',', ' ').'</td>';
                 echo '</tr>';
                 
                 //tranche 2
@@ -135,16 +136,16 @@
                 echo '<td>'.$kwh -100 .'</td>';
                 echo '<td>'.$P_U.'</td>';
                echo '<td>'.number_format(($kwh - 100) * $P_U, 2, ',', ' ').'</td>';
-                echo '<td class="pt-3">' .$tva * 100 .'%</td>';
+                echo '<td>' .$tva * 100 .'%</td>';
                 echo '<td>'.number_format($montantht2 * $tva, 2, ',', ' ').'</td>';
                 echo '</tr>';
                  
             }else{
-                echo '<tr>';
+                 echo '<tr>';
                  echo '<td>'.$kwh.'</td>';
                  echo '<td>'.$P_U.'</td>';
-                echo '<td>'.number_format($montantht2, 2, ',', ' ').'</td>';
-                 echo '<td class="pt-3">' .$tva * 100 .'</td>';
+                 echo '<td>'.number_format($montantht, 2, ',', ' ').'</td>';
+                 echo '<td>' .$tva * 100 .'%</td>';
                  echo '<td>'.number_format($mttaxes, 2, ',', ' ').'</td>';
                  echo '</tr>';
              }
@@ -152,12 +153,12 @@
         <tr>
             <td></td>
             <td></td>
-            <td><?php echo $redevance;?></td>
-            <td class="pt-0"><?php echo $tva * 100;?>%</td>
+            <td class="pt-3"><?php echo $redevance;?></td>
+            <td class="pt-3"><?php echo $tva * 100;?>%</td>
             <?php
             if($tranche == 'TRANCHE2'){
 
-                echo '<td>'. number_format($redevancetx, 2, ',', ' ').'</td>';
+                echo '<td class="pt-3">'. number_format($redevancetx, 2, ',', ' ').'</td>';
             }else{
                 echo '<td>'.number_format($redevancetx, 2, ',', ' ') .'</td>';
             }
@@ -166,21 +167,21 @@
         <?php 
             if($tranche == 'TRANCHE2'){
                 $txtot = ($montantht1 * $tva)+($montantht2 * $tva) + $redevancetx;
-                echo '<tr><td> </td><td> </td><td> </td><td> </td> <td>' .number_format($txtot, 2, ',', ' '). '</td> </tr>';
+                echo '<tr><td> </td><td> </td><td> </td><td> </td> <td class="pt-5">' .number_format($txtot, 2, ',', ' '). '</td> </tr>';
             }else{
                 echo '<tr><td> </td><td> </td><td> </td><td> </td> <td>' .number_format($txtot, 2, ',', ' '). '</td> </tr>';
 
             }
         ?>
-        <tr><td> </td><td> </td><td> </td><td> </td> <td> <?php echo $timbre;?></td> </tr>
+        <tr><td> </td><td> </td><td> </td><td> </td> <td class="pt-2"> <?php echo $timbre;?></td> </tr>
         <?php 
             if($tranche == 'TRANCHE2'){
                 $txtot = ($montantht1 * $tva)+($montantht2 * $tva) + $redevancetx;
                 $stot1 = $txtot + $timbre;
                 $stot2 = $redevance + $montantht2 + $montantht1;
                 $tot = $stot2 + $stot1;
-               echo '<tr><td> </td> <td></td> <td>' .number_format($stot2, 2, ',', ' ').'</td> <td></td> <td> '. number_format($stot1, 2, ',', ' ').'</td> </tr>';
-               echo '<tr><td> </td><td> </td><td>'.number_format($tot, 2, ',', ' ') .' </td><td> </td> <td> </td> </tr>';
+               echo '<tr><td> </td> <td></td> <td class="pt-0">' .number_format($stot2, 2, ',', ' ').'</td> <td></td> <td class="pt-0"> '. number_format($stot1, 2, ',', ' ').'</td> </tr>';
+               echo '<tr><td> </td><td> </td><td class="pt-5">'.number_format($tot, 2, ',', ' ') .' </td><td> </td> <td> </td> </tr>';
             }else{
                 echo '<tr><td> </td><td> </td><td> </td><td> </td> <td>' .number_format($txtot, 2, ',', ' '). '</td> </tr>';
                 echo '<tr><td> </td><td> </td><td>'.number_format($tot, 2, ',', ' ') .' </td><td> </td> <td> </td> </tr>';
@@ -197,45 +198,56 @@
     <div class="col pt-5 mt-3 text-end">
 
 
-       <tr> <td>إستھلاك الكھرباء</td></tr><br>
+    <h6>إستھلاك الكھرباء</h6>
        <?php
        $trancheAr = '';
        if($tranche == 'TRANCHE2'){
            $trancheAr = '1الشطر';
-           echo '<tr> <td class="text-secondary small pt-1">'.$trancheAr.'</td></tr><br>';
+           echo '<h6 class="text-secondary small pt-1">'.$trancheAr.'</h6>';
            $trancheAr = '2الشطر';
-          echo '<tr> <td class="text-secondary small pt-1">'.$trancheAr.'</td></tr><br>';
+          echo '<h6 class="text-secondary small pt-1">'.$trancheAr.'</h6>';
 
        }else{
            if($tranche == 'TRANCHE3'){
             $trancheAr = '3الشطر';
-            echo '<tr> <td class="text-secondary small pt-1">'.$trancheAr.'</td></tr><br>';
+            echo '<h6 class="text-secondary small pt-1">'.$trancheAr.'</h6>';
            }elseif($tranche == 'TRANCHE4'){
             $trancheAr = '4الشطر';
-            echo '<tr> <td class="text-secondary small pt-1">'.$trancheAr.'</td></tr><br>';
+            echo '<h6 class="text-secondary small pt-1">'.$trancheAr.'</h6>';
            }elseif($tranche == 'TRANCHE5'){
             $trancheAr = '5الشطر';
-            echo '<tr> <td class="text-secondary small pt-1">'.$trancheAr.'</td></tr><br>';
+            echo '<h6 class="text-secondary small pt-1">'.$trancheAr.'</h6>';
            }else{
             $trancheAr = '6الشطر';
-            echo '<tr> <td class="text-secondary small pt-1">'.$trancheAr.'</td></tr><br>';
+            echo '<h6 class="text-secondary small pt-1">'.$trancheAr.'</h6>';
            }
         }
        ?>
-        <!-- <td class="text-secondary small pt-1">2الشطر</td> -->
-        <tr> <td class="py-2">إثاوة ثابتة الكھرباء</td></tr><br>
-        <tr> <td class="pb-1"> الرسوم المؤداة لفائدة الدولة </td></tr><br>
-        <tr> <td class="text-secondary small pt-1">مجموع ض.ق.م</td></tr><br>
-        <tr> <td class="text-secondary small pt-2">الطابع</td></tr><br>
-        <tr> <td class="bt-1">المجموع الجزئي</td></tr><br>
-        <tr> <td>
-            مجموع الكھرباء</td>
+        <!-- <h6 class="text-secondary small pt-1">2الشطر</h6> -->
+        <h6 class="pt-3 mt-3">إثاوة ثابتة الكھرباء</h6>
+        <h6 class="pb-1"> الرسوم المؤداة لفائدة الدولة </h6>
+        <h6 class="text-secondary small pt-3">مجموع ض.ق.م</h6>
+        <h6 class="text-secondary small pt-3">الطابع</h6>
+        <h6 class="bt-1">المجموع الجزئي</h6><br><br>
+        <h6 class="pt-1">
+            مجموع الكھرباء</h6>
         </div>
               </div>
             </div>
         </section>
+        <div>
+         <button type="submit" class="btn btn-dark m-3 text-center" id="btn"  onclick="Print_page()">Print</button>
+             </div>
     </body>
+    <script>
 
+        function Print_page(){
+            const btn = document.getElementById("btn");
+            btn.style.display = "none";//className = 'btn+';   
+            window.print();
+             btn.style.display = "block";
+             btn.style.width = "100px";
+        }</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
 </html>
